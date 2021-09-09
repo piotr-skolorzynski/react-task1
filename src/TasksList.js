@@ -8,10 +8,7 @@ const TasksList = ({tasks, handleDelete, handleFinished, handleIncrease}) => {
                 return (
                     <li key={id} className="task">
                         <span className="task-name">{text}</span>
-                        { isFinished ? 
-                            <span className="task-status">{plannedStages} / {plannedStages}</span>
-                            : <span className="task-status">{finishedStages} / {plannedStages}</span>
-                        }
+                        <span className="task-status">{finishedStages} / {plannedStages}</span>
                         <div className="btn-container">
                             { isFinished ? (
                                 <>

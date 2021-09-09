@@ -31,7 +31,7 @@ function App() {
   const handleFinished = id => {
     setTasks(tasks.map(task => {
       if(task.id === id) {
-        return {...task, isFinished: !task.isFinished}
+        return {...task, isFinished: !task.isFinished, finishedStages: task.plannedStages}
       } else {
         return task;
       }
