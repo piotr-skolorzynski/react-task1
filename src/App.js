@@ -1,26 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import TasksList from './TasksList';
+import TasksListHeader from './TasksListHeader';
 
 function App() {
-
-  const generateId = (min=0, max=10000) => {
-    return Math.floor(Math.random() * ((max - min + 1) + min));
-  };
   const [taskText, setTaskText] = useState('');
   const [taskStages, setTaskStages] = useState(0);
   const [tasks, setTasks] = useState([]);
-
-  useEffect(() => {
-    console.log(tasks);
-  }, [tasks]);
 
   const handleSubmit = e => {
     e.preventDefault();
     setTasks(() => {
       const task = {
-        id: generateId(),
+        id: new Date().getTime().toString(),
         text: taskText,
         plannedStages: taskStages,
-        finishedStages: 0
+        finishedStages: 0,
+        isFinished: false
       }
       return [...tasks, task];
     });
@@ -28,31 +23,35 @@ function App() {
     setTaskStages(0);
   };
 
+  const handleDelete = id => {
+    const newTasks = tasks.filter(task => task.id !== id);
+    setTasks(newTasks);
+  };
+
+  const handleFinished = id => {
+    setTasks(tasks.map(task => {
+      if(task.id === id) {
+        return {...task, isFinished: !task.isFinished}
+      } else {
+        return task;
+      }
+    }))
+  };
+
+  const handleIncrease = id => {
+    setTasks(tasks.map(task => {
+      if(task.finishedStages >= task.plannedStages) {
+        return task;
+      } else {
+        return {...task, finishedStages: task.finishedStages + 1}
+      }
+    }))
+  };
+
   return (
     <div className="app-container">
-      <div className="tasks-header">
-        <span>Task name</span>
-        <span>Status (done / planned)</span>
-        <span>Controls</span>
-      </div>
-      <ul className="tasks-container">
-        {tasks &&
-            tasks.map(task => {
-              const {id, text, plannedStages, finishedStages} = task;
-              return (
-                <li key={id} className="task">
-                  <span className="task-name">{text}</span>
-                  <span className="task-status">{finishedStages} / {plannedStages}</span>
-                  <div className="btn-container">
-                    <button>done</button>
-                    <button>increase task count</button>
-                    <button>delete task</button>
-                  </div>
-                </li>
-              )
-            })        
-        }
-      </ul>
+      <TasksListHeader />
+      <TasksList tasks={tasks} handleDelete={handleDelete} handleFinished={handleFinished} handleIncrease={handleIncrease} />
       <form className="form" onSubmit={handleSubmit}>
         <input className="form-input-text" type="text" placeholder="Enter task name" value={taskText} onChange={e => setTaskText(e.target.value)} />
         <input className="form-input-number" type="number" placeholder="0" value={taskStages} onChange={e => setTaskStages(e.target.value)}/>
