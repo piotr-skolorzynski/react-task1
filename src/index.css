@@ -1,3 +1,80 @@
+html {
+  font-size: 62.5%;
+}
+
 body {
   font-family: sans-serif;
+}
+
+.app-container {
+  margin: 3rem auto;
+  padding: 2rem;
+  max-width: 900px;
+  background-color: #f3f3f3;
+  border-radius: 10px;
+}
+
+.tasks-header {
+  margin: 0 auto;
+  padding: .5rem;
+  width: 95%;
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 2rem;
+  font-weight: bold;
+  border-bottom: 2px solid #000;
+}
+
+.tasks-container {
+  width: 90%;
+  font-size: 2rem;
+}
+
+.task {
+  margin-top: 2rem;
+  padding: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  border-bottom: 1px solid #000;
+}
+
+.task-name,
+task-status {
+  width: 33%;
+  text-align: center;
+}
+
+.btn-container {
+  width: 34%;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.btn-container button {
+  margin-left: .25rem;
+  padding: 0.25rem;
+  cursor: pointer;
+}
+
+.form {
+  margin: 2rem 0 0 2rem;
+  padding: 1rem;
+  font-size: 1.6rem;
+}
+
+.form-input-number,
+.form-btn {
+  margin-left: 1rem;
+  padding: .25rem;
+}
+
+.form-input-number {
+  width: 3rem;
+}
+
+.form-btn {
+  padding: .25rem;
+  cursor: pointer;
 }
