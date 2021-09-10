@@ -40,10 +40,10 @@ function App() {
 
   const handleIncrease = id => {
     setTasks(tasks.map(task => {
-      if(task.finishedStages >= task.plannedStages) {
-        return task;
+      if(task.id === id && task.finishedStages < task.plannedStages) {
+        return {...task, finishedStages: task.finishedStages + 1};
       } else {
-        return {...task, finishedStages: task.finishedStages + 1}
+        return task;
       }
     }))
   };
