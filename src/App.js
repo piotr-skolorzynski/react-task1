@@ -48,13 +48,21 @@ function App() {
     }))
   };
 
+  const handleFormText = e => {
+    setTaskText(e.target.value);
+  }
+
+  const handleFormNumber = e => {
+    setTaskStages(e.target.value);
+  }
+
   return (
     <div className="app-container">
       <TasksListHeader />
       <TasksList tasks={tasks} handleDelete={handleDelete} handleFinished={handleFinished} handleIncrease={handleIncrease} />
       <form className="form" onSubmit={handleSubmit}>
-        <input className="form-input-text" type="text" placeholder="Enter task name" value={taskText} onChange={e => setTaskText(e.target.value)} />
-        <input className="form-input-number" type="number" placeholder="0" value={taskStages} onChange={e => setTaskStages(e.target.value)}/>
+        <input className="form-input-text" type="text" placeholder="Enter task name" value={taskText} onChange={e => handleFormText(e)} />
+        <input className="form-input-number" type="number" placeholder="0" value={taskStages} onChange={e => handleFormNumber(e)}/>
         <button className="form-btn" type="submit">Submit</button>
       </form>
     </div>
