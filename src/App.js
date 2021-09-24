@@ -61,8 +61,8 @@ function App() {
       <TasksListHeader />
       <TasksList tasks={tasks} handleDelete={handleDelete} handleFinished={handleFinished} handleIncrease={handleIncrease} />
       <form className="form" onSubmit={handleSubmit}>
-        <input className="form-input-text" type="text" placeholder="Enter task name" value={taskText} onChange={e => handleFormText(e)} />
-        <input className="form-input-number" type="number" placeholder="0" value={taskStages} onChange={e => handleFormNumber(e)}/>
+        <input className="form-input-text" type="text" placeholder="Enter task name" value={taskText} onChange={handleFormText} />
+        <input className="form-input-number" type="number" placeholder="0" value={taskStages} onChange={handleFormNumber}/>
         <button className="form-btn" type="submit">Submit</button>
       </form>
     </div>
